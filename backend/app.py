@@ -21,7 +21,13 @@ from utils.nlp_model import generate_nlm_reply, translate_text
 from utils.db import init_db, add_message, get_recent_messages, clear_history
 
 app = Flask(__name__)
-CORS(app)
+CORS(
+    app,
+    resources={r"/*": {"origins": [
+        "http://localhost:3000",
+        "https://your-frontend.vercel.app",
+    ]}},
+)
 
 # Initialize DB
 init_db()
